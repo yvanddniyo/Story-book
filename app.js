@@ -35,7 +35,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: "mongodb://localhost/storySaver",
+      mongoUrl: "mongodb://localhost:27017/storySaver",
     }),
   })
 );
