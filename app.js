@@ -34,11 +34,17 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: false,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
     store: MongoStore.create({
       mongoUrl: "mongodb://localhost:27017/storySaver",
     }),
   })
 );
+
+//Body parser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 //passport middleware
 app.use(passport.initialize());
@@ -50,6 +56,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // routes
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/auth"));
+app.use("/stories", require("./routes/stories"));
 
 const PORT = process.env.PORT || 3000;
 
